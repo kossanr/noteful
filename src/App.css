@@ -1,0 +1,33 @@
+.app {
+  text-align: center;
+}
+
+ul {
+  list-style: none;
+}
+main {
+  display: flex;
+}
+
+aside {
+  flex: 1;
+  border: solid 1px black;
+  padding: 20px;
+  margin: 1px;
+}
+section {
+  flex: 4;
+  border: solid 1px black;
+  padding: 20px;
+}
+
+button {
+  width: 10em;
+  height: 5em;
+}
+
+.addFolder {
+  margin: 10px;
+  color: blue;
+  background: white;
+}

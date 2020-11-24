@@ -1,11 +1,15 @@
 import React from "react";
-import Notes from "./Notes";
+import data from "./data";
 import Main from "./Main";
 import Folder from "./Folder";
 import Note from "./Note";
 import { Route, Link } from "react-router-dom";
+import "./App.css";
+
 export default class App extends React.Component {
-  state = Notes;
+  state = data;
+
+  // addFolder() //write method that adds folder
 
   render() {
     return (
@@ -15,17 +19,27 @@ export default class App extends React.Component {
             <Link to="/">Noteful</Link>
           </h1>{" "}
         </header>
+        <main>
+          <aside className="aside">
+            <Route
+              path="/"
+              render={(rprops) => <Folder {...rprops} {...this.state} />}
+            />
+          </aside>
 
-        <Route
-          path="/"
-          render={(props) => <Main {...props} state={this.state} />}
-        />
-        {/* <Route
-          path="/folder/:folderId"
-          render={(props) => <Folder {...props} state={this.state} />}
-        /> */}
+          <section>
+            <Route
+              exact
+              path={["/", "/folder/:folderid"]}
+              render={(props) => <Main {...props} {...this.state} />}
+            />
 
-        <Route path="/note/:noteId" component={Note} />
+            <Route
+              path="/note/:noteId"
+              render={(rprops) => <Note {...rprops} {...this.state} />}
+            />
+          </section>
+        </main>{" "}
       </div>
     );
   }
