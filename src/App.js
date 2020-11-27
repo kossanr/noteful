@@ -31,7 +31,7 @@ export default class App extends React.Component {
             <Route
               exact
               path={["/", "/folder/:folderid"]}
-              render={(props) => <Main {...props} {...this.state} />}
+              render={(rprops) => <Main {...rprops} {...this.state} />}
             />
 
             <Route

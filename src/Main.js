@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Note from "./Note";
 
 export default function Main(props) {
   //const { notes } = props;
