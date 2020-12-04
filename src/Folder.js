@@ -1,19 +1,18 @@
-import React from "react";
-
+import React, { useContext } from "react";
+import Context from "./Context";
 import { Link } from "react-router-dom";
 
 export default function Folder(props) {
-  const { folders, addFolder } = props;
+  const context = useContext(Context);
 
   return (
     <div className="folder">
       <ul>
-        {folders.map((folder) => (
+        {context.folders.map((folder) => (
           <li key={folder.id}>
             {" "}
             <Link to={`/folder/${folder.id}`}>
               {" "}
-              {/*Link to notes that match folders ID*/}
               <button type="button">{folder.name}</button>
             </Link>{" "}
           </li>

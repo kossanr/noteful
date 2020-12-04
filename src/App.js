@@ -3,66 +3,41 @@ import data from "./data";
 import Main from "./Main";
 import Folder from "./Folder";
 import Note from "./Note";
+import Context from "./Context";
 import { Route, Link } from "react-router-dom";
 import "./App.css";
 
 export default class App extends React.Component {
-  state = data;
+  state = {
+    ...data,
+    addFolder: (folder) =>
+      this.setState({ folders: [...this.state.folders, folder] }),
+    addNote: (note) => this.setState({ notes: [...this.state.notes, note] }),
+  };
 
-  // addFolder() //write method that adds folder
+  // componentDidMount()
 
   render() {
     return (
-      <div className="app">
-        <header className="App">
-          <h1>
-            <Link to="/">Noteful</Link>
-          </h1>{" "}
-        </header>
-        <main>
-          <aside className="aside">
-            <Route
-              path="/"
-              render={(rprops) => <Folder {...rprops} {...this.state} />}
-            />
-          </aside>
+      <Context.Provider value={this.state}>
+        <div className="app">
+          <header className="App">
+            <h1>
+              <Link to="/">Noteful</Link>
+            </h1>{" "}
+          </header>
+          <main>
+            <aside className="aside">
+              <Route path="/" component={Folder} />
+            </aside>
 
-          <section>
-            <Route
-              exact
-              path={["/", "/folder/:folderid"]}
-              render={(rprops) => <Main {...rprops} {...this.state} />}
-            />
-
-            <Route
-              path="/note/:noteId"
-              render={(rprops) => <Note {...rprops} {...this.state} />}
-            />
-          </section>
-        </main>{" "}
-      </div>
+            <section>
+              <Route exact path={["/", "/folder/:folderid"]} component={Main} />
+              <Route path="/note/:noteId" component={Note} />
+            </section>
+          </main>{" "}
+        </div>
+      </Context.Provider>
     );
   }
 }
-//State lives in APP component
-//each route will have the same header section
-//Apps title will be <Link /> to MAIN route
-
-//MAIN
-//displayed when path is "/"
-//Display all available notes (Notes shows name and modified date)
-//Sidebar will display list of folders with none selected
-
-//FOLDER
-//dynamic route
-//displayed when path is "/folder/:folderID"
-//folderID: an id of the folders in state
-//main section dislays notes that are "in" that selected folder
-//sidebar should display the folder list with the selected folder highlighted
-
-//NOTE
-//dynamic route
-//path '/note/:noteID'
-//noteID: id of ONE of the notes in state
-//main section displays currently selected notes name, modified date, and content
-//sidebar displays folder of the cirrectly selected note as well as a back button

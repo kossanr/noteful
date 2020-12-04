@@ -1,22 +1,28 @@
 import React from "react";
+import Context from "./Context";
 import { Link } from "react-router-dom";
-import Note from "./Note";
+import "./Main.css";
 
-export default function Main(props) {
-  //const { notes } = props;
-  const notes = props.match.params.folderid
-    ? props.notes.filter((n) => n.folderId === props.match.params.folderid)
-    : props.notes;
-  return (
-    <div className="main">
-      <ul>
-        {notes.map((note) => (
-          <li key={note.id}>
-            {" "}
-            <Link to={`/note/${note.id}`}>{note.name}</Link>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+export default class Main extends React.Component {
+  static contextType = Context;
+
+  render() {
+    const { props, context } = this;
+    const notes = props.match.params.folderid
+      ? context.notes.filter((n) => n.folderId === props.match.params.folderid)
+      : context.notes;
+    return (
+      <div className="main">
+        <ul>
+          {notes.map((note) => (
+            <li key={note.id}>
+              {" "}
+              <Link to={`/note/${note.id}`}>{note.name}</Link>
+            </li>
+          ))}
+        </ul>
+        <button className="add_note"> Add Note</button>
+      </div>
+    );
+  }
 }
