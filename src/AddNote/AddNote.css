@@ -1,0 +1,14 @@
+.add_note {
+  margin: 40px;
+  /* border: none; */
+}
+
+.save_note_button {
+  margin: 17px;
+}
+input {
+  margin-bottom: 10px;
+}
+form {
+  padding: 20px;
+}

@@ -1,12 +1,13 @@
 import React from "react";
-// import data from "./data";
-import Main from "./Main";
-import Folder from "./Folder";
-import Note from "./Note";
-import Context from "./Context";
+import Main from "../Main/Main";
+import Folder from "../Folder/Folder";
+import Note from "../Note/Note";
+import Context from "../Context";
 import { Route, Link } from "react-router-dom";
 import "./App.css";
-import config from "./config";
+import config from "../config";
+import AddFolder from "../AddFolder/AddFolder";
+import AddNote from "../AddNote/AddNote";
 
 export default class App extends React.Component {
   state = {
@@ -18,12 +19,11 @@ export default class App extends React.Component {
         notes: this.state.notes.filter((note) => note.id !== noteId),
       });
     },
+    addFolder: (folder) =>
+      this.setState({ folders: [...this.state.folders, folder] }),
+
+    addNote: (note) => this.setState({ notes: [...this.state.notes, note] }),
   };
-
-  // addFolder: (folder) =>
-  //   this.setState({ folders: [...this.state.folders, folder] }),
-
-  // addNote: (note) => this.setState({ notes: [...this.state.notes, note] }),
 
   componentDidMount() {
     //Promise.all() runs several asynchronous operations in parallel
@@ -54,7 +54,7 @@ export default class App extends React.Component {
       <Context.Provider value={this.state}>
         <div className="app">
           <header className="App">
-            <h1>
+            <h1 className="noteful_header">
               <Link to="/">Noteful</Link>
             </h1>{" "}
           </header>
@@ -66,6 +66,8 @@ export default class App extends React.Component {
             <section>
               <Route exact path={["/", "/folder/:folderid"]} component={Main} />
               <Route path="/note/:noteId" component={Note} />
+              <Route path="/addfolder" component={AddFolder} />
+              <Route path="/addNote" component={AddNote} />
             </section>
           </main>{" "}
         </div>

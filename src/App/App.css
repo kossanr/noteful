@@ -1,5 +1,10 @@
-.app {
+* {
+  box-sizing: border-box;
   text-align: center;
+}
+
+.app {
+  padding: 20px;
 }
 
 ul {
@@ -9,12 +14,6 @@ main {
   display: flex;
 }
 
-aside {
-  flex: 1;
-  border: solid 1px black;
-  padding: 20px;
-  margin: 1px;
-}
 section {
   flex: 4;
   border: solid 1px black;

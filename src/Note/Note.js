@@ -1,6 +1,7 @@
 import React from "react"; //{ Component, useCallback }
-import Context from "./Context";
-import config from "./config";
+import Context from "../Context";
+import "./Note.css";
+import config from "../config";
 import { Redirect } from "react-router-dom";
 
 export default class Note extends React.Component {

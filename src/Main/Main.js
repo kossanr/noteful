@@ -1,5 +1,5 @@
 import React from "react";
-import Context from "./Context";
+import Context from "../Context";
 import { Link } from "react-router-dom";
 import "./Main.css";
 
@@ -21,8 +21,12 @@ export default class Main extends React.Component {
             </li>
           ))}
         </ul>
-        <button className="add_note"> Add Note</button>
+
+        <Link to="/AddNote">
+          <button className="add_note">Add Note</button>
+        </Link>
       </div>
     );
   }
 }
+Main.propTypes = {};

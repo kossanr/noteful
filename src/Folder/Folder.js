@@ -1,13 +1,15 @@
 import React, { useContext } from "react";
-import Context from "./Context";
+import Context from "../Context";
 import { Link } from "react-router-dom";
+import "./Folder.css";
+import AddFolder from "../AddFolder/AddFolder";
 
 export default function Folder(props) {
   const context = useContext(Context);
 
   return (
     <div className="folder">
-      <ul>
+      <ul className="folders">
         {context.folders.map((folder) => (
           <li key={folder.id}>
             {" "}
@@ -17,10 +19,14 @@ export default function Folder(props) {
             </Link>{" "}
           </li>
         ))}
-        <button /*onClick={addFolder}*/ className="addFolder">
+        <Link to="/addfolder">
+          <button className="addFolder">Add Folder</button>
+        </Link>
+
+        {/* <button onClick={context.addFolder} className="addFolder">
           {" "}
           Add folder
-        </button>
+        </button> */}
       </ul>
     </div>
   );
