@@ -1,6 +1,7 @@
 import React from "react";
 import Context from "../Context";
 import { Link } from "react-router-dom";
+import propTypes from "prop-types";
 import "./Main.css";
 
 export default class Main extends React.Component {
@@ -29,4 +30,6 @@ export default class Main extends React.Component {
     );
   }
 }
-Main.propTypes = {};
+Main.propTypes = {
+  match: propTypes.object,
+};

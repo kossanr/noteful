@@ -8,6 +8,7 @@ import "./App.css";
 import config from "../config";
 import AddFolder from "../AddFolder/AddFolder";
 import AddNote from "../AddNote/AddNote";
+import NotefulError from "../NotefulError/NotefulError";
 
 export default class App extends React.Component {
   state = {
@@ -52,25 +53,31 @@ export default class App extends React.Component {
   render() {
     return (
       <Context.Provider value={this.state}>
-        <div className="app">
-          <header className="App">
-            <h1 className="noteful_header">
-              <Link to="/">Noteful</Link>
-            </h1>{" "}
-          </header>
-          <main>
-            <aside className="aside">
-              <Route path="/" component={Folder} />
-            </aside>
+        <NotefulError>
+          <div className="app">
+            <header className="App">
+              <h1 className="noteful_header">
+                <Link to="/">Noteful</Link>
+              </h1>{" "}
+            </header>
+            <main>
+              <aside className="aside">
+                <Route path="/" component={Folder} />
+              </aside>
 
-            <section>
-              <Route exact path={["/", "/folder/:folderid"]} component={Main} />
-              <Route path="/note/:noteId" component={Note} />
-              <Route path="/addfolder" component={AddFolder} />
-              <Route path="/addNote" component={AddNote} />
-            </section>
-          </main>{" "}
-        </div>
+              <section>
+                <Route
+                  exact
+                  path={["/", "/folder/:folderid"]}
+                  component={Main}
+                />
+                <Route path="/note/:noteId" component={Note} />
+                <Route path="/addfolder" component={AddFolder} />
+                <Route path="/addNote" component={AddNote} />
+              </section>
+            </main>{" "}
+          </div>
+        </NotefulError>
       </Context.Provider>
     );
   }

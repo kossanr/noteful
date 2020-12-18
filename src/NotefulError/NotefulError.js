@@ -9,6 +9,7 @@ export default class NotefulError extends React.Component {
   };
 
   //method sets hassError to true
+  //gets called when there is an error
   static getDerivedStateFromError(error) {
     return { hasError: true };
   }
@@ -18,6 +19,7 @@ export default class NotefulError extends React.Component {
     if (this.state.hasError) {
       return <h2>Could not display this page</h2>;
     }
+    // else render everything thats inside component like normal
     return this.props.children;
   }
 }

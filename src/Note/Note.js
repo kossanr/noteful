@@ -3,6 +3,7 @@ import Context from "../Context";
 import "./Note.css";
 import config from "../config";
 import { Redirect } from "react-router-dom";
+import PropTypes from "prop-types";
 
 export default class Note extends React.Component {
   static contextType = Context;
@@ -66,3 +67,8 @@ export default class Note extends React.Component {
     );
   }
 }
+
+Note.propTypes = {
+  match: PropTypes.object,
+  history: PropTypes.object,
+};

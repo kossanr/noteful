@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Context from "../Context";
 import "./AddFolder.css";
 import config from "../config";
+import PropTypes from "prop-types";
 
 export default class AddFolder extends React.Component {
   static contextType = Context;
@@ -47,3 +48,6 @@ export default class AddFolder extends React.Component {
     );
   }
 }
+AddFolder.propTypes = {
+  history: PropTypes.object,
+};
