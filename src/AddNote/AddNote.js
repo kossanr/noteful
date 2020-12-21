@@ -6,6 +6,9 @@ import { Link } from "react-router-dom";
 
 export default class AddNote extends React.Component {
   static contextType = Context;
+  state = {
+    error: "",
+  };
 
   handleAddNote = (e) => {
     e.preventDefault();
@@ -30,15 +33,20 @@ export default class AddNote extends React.Component {
           this.context.addNote(newNote);
           e.target.reset();
           this.props.history.push("/");
+        })
+        .catch((error) => {
+          this.setState({ error: "Something went wrong, try again later" });
         });
     }
   };
-  // <Link to={`/note/${newNote.id}`} />
 
   render() {
     return (
       <section className="add_note">
         <form onSubmit={this.handleAddNote}>
+          {this.state.error !== "" && (
+            <p className="error">{this.state.error}</p>
+          )}
           <p>
             <label htmlFor="new_note_name"> Note name: </label>
             <input

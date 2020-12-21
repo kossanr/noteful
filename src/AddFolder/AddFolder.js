@@ -7,6 +7,10 @@ import PropTypes from "prop-types";
 export default class AddFolder extends React.Component {
   static contextType = Context;
 
+  state = {
+    error: "",
+  };
+
   handleAddFolder = (e) => {
     e.preventDefault();
     //fetch logic for adding folders to API?
@@ -26,6 +30,9 @@ export default class AddFolder extends React.Component {
         this.context.addFolder(newFolder);
         e.target.reset();
         this.props.history.push("/");
+      })
+      .catch((error) => {
+        this.setState({ error: "Something went wrong, try again later" });
       });
   };
 
@@ -33,6 +40,10 @@ export default class AddFolder extends React.Component {
     return (
       <section className="add_folder">
         <form onSubmit={this.handleAddFolder}>
+          {this.state.error !== "" && (
+            <p className="error">{this.state.error}</p>
+          )}
+
           <label htmlFor="foldername"> Folder name: </label>
           <input
             required
@@ -49,5 +60,5 @@ export default class AddFolder extends React.Component {
   }
 }
 AddFolder.propTypes = {
-  history: PropTypes.object,
+  history: PropTypes.object.isRequired,
 };

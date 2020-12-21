@@ -12,6 +12,7 @@ export default class NotefulError extends React.Component {
   //gets called when there is an error
   static getDerivedStateFromError(error) {
     return { hasError: true };
+    //    this.setState({ hasError: true });
   }
 
   render() {

@@ -47,9 +47,6 @@ export default class App extends React.Component {
       });
   }
 
-  //store responses in thisSetStat
-  //this.setState({})
-
   render() {
     return (
       <Context.Provider value={this.state}>

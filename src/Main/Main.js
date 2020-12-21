@@ -31,5 +31,5 @@ export default class Main extends React.Component {
   }
 }
 Main.propTypes = {
-  match: propTypes.object,
+  match: propTypes.object.isRequired,
 };
